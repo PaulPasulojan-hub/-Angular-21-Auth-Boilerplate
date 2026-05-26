@@ -1,0 +1,54 @@
+﻿<div class="auth-wrapper">
+  <div class="card">
+    <p class="eyebrow">Welcome back</p>
+    <h1>Sign in to your <em>account</em></h1>
+
+    <alert></alert>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label for="email">Email address</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          [class.error]="submitted && f['email'].errors"
+        />
+        <div class="field-error" *ngIf="submitted && f['email'].errors">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span *ngIf="f['email'].errors['required']">Email is required</span>
+          <span *ngIf="f['email'].errors['email']">Please enter a valid email address</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+          [class.error]="submitted && f['password'].errors"
+        />
+        <div class="field-error" *ngIf="submitted && f['password'].errors">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Password is required</span>
+        </div>
+      </div>
+
+      <button class="btn" [disabled]="submitting">
+        <span *ngIf="submitting" class="spinner"></span>
+        {{ submitting ? 'Signing in…' : 'Sign in' }}
+      </button>
+    </form>
+
+    <div class="footer-links">
+      <a routerLink="/account/register">Create an account</a>
+      <div class="divider"></div>
+      <a routerLink="/account/forgot-password">Forgot password?</a>
+    </div>
+  </div>
+</div>

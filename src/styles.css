@@ -1,0 +1,27 @@
+﻿@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+body {
+  background: #f0f2f5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+  background: #4f46e5;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.btn-primary:hover {
+  background: #4338ca;
+}
+
+.form-control {
+  border-radius: 8px;
+  padding: 10px;
+}

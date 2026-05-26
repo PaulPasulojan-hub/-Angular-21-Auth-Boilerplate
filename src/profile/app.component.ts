@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-
-import { AccountService } from './_services';
-import { Account, Role } from './_models';
+﻿import { Component } from '@angular/core';
+import { AccountService } from '@app/_services';
+import { Account, Role } from '@app/_models';
 
 @Component({ selector: 'app-root', templateUrl: 'app.component.html', standalone: false })
 export class AppComponent {

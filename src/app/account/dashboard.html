@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #111; font-family: 'DM Sans', sans-serif; padding: 2rem 1rem; }
+    .card { background: #1e1e1e; border-radius: 18px; padding: 2.5rem 2.25rem; width: 100%; max-width: 370px; text-align: center; }
+    .avatar { width: 64px; height: 64px; border-radius: 50%; background: #2e2a4a; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 24px; color: #7B68D4; font-family: 'DM Serif Display', serif; font-style: italic; }
+    .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #666; margin-bottom: 0.4rem; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: 26px; font-weight: 400; color: #f0f0f0; margin-bottom: 0.4rem; line-height: 1.2; }
+    .email { font-size: 13px; color: #666; margin-bottom: 2rem; word-break: break-all; }
+    .divider { height: 1px; background: #2a2a2a; margin-bottom: 2rem; }
+    .btn { width: 100%; height: 46px; background: #2e2e2e; color: #e8e8e8; border: 1px solid #444; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; transition: background 0.15s, border-color 0.15s, transform 0.1s; }
+    .btn:hover { background: #383838; border-color: #555; }
+    .btn:active { transform: scale(0.98); }
+    .alert { font-size: 13px; border-radius: 8px; padding: 10px 14px; margin-bottom: 1.25rem; background: #1a2a1e; color: #68b484; border: 1px solid #245a38; display: none; }
+    .alert.visible { display: block; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="avatar" id="avatar">?</div>
+    <p class="eyebrow">Signed in</p>
+    <h1>You're <em style="font-style:italic;color:#7B68D4;">in</em></h1>
+    <p class="email" id="user-email"></p>
+    <div class="divider"></div>
+    <div class="alert visible" id="reset-notice" style="display:none"></div>
+    <button class="btn" id="logout-btn">Sign out</button>
+  </div>
+
+  <script>
+    const Auth = {
+      getCurrentUser() { return localStorage.getItem('auth_current'); },
+      logout() { localStorage.removeItem('auth_current'); }
+    };
+
+    const user = Auth.getCurrentUser();
+    if (!user) window.location.href = 'login.html';
+
+    document.getElementById('user-email').textContent = user;
+    document.getElementById('avatar').textContent = user ? user[0].toUpperCase() : '?';
+
+    // Show success notice if coming from password reset
+    if (window.location.search.includes('reset=1')) {
+      const notice = document.getElementById('reset-notice');
+      notice.textContent = 'Password reset successfully.';
+      notice.style.display = 'block';
+    }
+
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      Auth.logout();
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
