@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
-import { fakeBackendProvider } from './_helpers/fake-backend';
 
 @NgModule({
   imports: [
@@ -20,8 +19,8 @@ import { fakeBackendProvider } from './_helpers/fake-backend';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    // ? fakeBackendProvider removed
   ],
   bootstrap: [AppComponent]
 })
