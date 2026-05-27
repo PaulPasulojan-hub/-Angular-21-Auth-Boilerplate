@@ -1,100 +1,282 @@
-﻿<div class="auth-wrapper">
-  <div class="card">
-    <p class="eyebrow">Get started</p>
-    <h1>Create your <em>account</em></h1>
+﻿  <!-- register.component.html -->
+<div class="auth-wrapper">
+  <div class="auth-card">
 
-    <alert></alert>
+    <!-- Logo -->
+    <div class="logo-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 256 256">
+        <path d="M213.85,125.46l-112,120a8,8,0,0,1-13.69-7l14.66-73.33L48.15,130.54a8,8,0,0,1,1.69-13.69l112-48a8,8,0,0,1,10.67,10.22L145.47,143.5l66.38,6.64a8,8,0,0,1,2,15.32Z"/>
+      </svg>
+    </div>
+
+    <p class="subtitle">Get started</p>
+    <h1 class="title">Create your <em>account</em></h1>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="field">
-        <label for="firstName">First name</label>
-        <input
-          id="firstName"
-          type="text"
-          formControlName="firstName"
-          placeholder="Jane"
-          [class.error]="submitted && f['firstName'].errors"
-        />
-        <div class="field-error" *ngIf="submitted && f['firstName'].errors">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span>First name is required</span>
+
+      <!-- First Name -->
+      <div class="field-group">
+        <label>FIRST NAME</label>
+        <div class="input-wrapper" [class.error]="submitted && f['firstName'].errors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8C53.7,193.53,79.08,180,128,180s74.3,13.53,89.07,40a8,8,0,1,0,13.85-8Z"/>
+          </svg>
+          <input
+            type="text"
+            formControlName="firstName"
+            placeholder="John"
+            [class.is-invalid]="submitted && f['firstName'].errors"
+          />
+        </div>
+        <div *ngIf="submitted && f['firstName'].errors" class="error-msg">
+          <span *ngIf="f['firstName'].errors?.['required']">First name is required</span>
         </div>
       </div>
 
-      <div class="field">
-        <label for="lastName">Last name</label>
-        <input
-          id="lastName"
-          type="text"
-          formControlName="lastName"
-          placeholder="Doe"
-          [class.error]="submitted && f['lastName'].errors"
-        />
-        <div class="field-error" *ngIf="submitted && f['lastName'].errors">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span>Last name is required</span>
+      <!-- Last Name -->
+      <div class="field-group">
+        <label>LAST NAME</label>
+        <div class="input-wrapper" [class.error]="submitted && f['lastName'].errors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8C53.7,193.53,79.08,180,128,180s74.3,13.53,89.07,40a8,8,0,1,0,13.85-8Z"/>
+          </svg>
+          <input
+            type="text"
+            formControlName="lastName"
+            placeholder="Doe"
+            [class.is-invalid]="submitted && f['lastName'].errors"
+          />
+        </div>
+        <div *ngIf="submitted && f['lastName'].errors" class="error-msg">
+          <span *ngIf="f['lastName'].errors?.['required']">Last name is required</span>
         </div>
       </div>
 
-      <div class="field">
-        <label for="email">Email address</label>
-        <input
-          id="email"
-          type="email"
-          formControlName="email"
-          placeholder="you@example.com"
-          autocomplete="email"
-          [class.error]="submitted && f['email'].errors"
-        />
-        <div class="field-error" *ngIf="submitted && f['email'].errors">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span *ngIf="f['email'].errors['required']">Email is required</span>
-          <span *ngIf="f['email'].errors['email']">Please enter a valid email address</span>
+      <!-- Email -->
+      <div class="field-group">
+        <label>EMAIL ADDRESS</label>
+        <div class="input-wrapper" [class.error]="submitted && f['email'].errors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58.2,53.15H52.23ZM157.29,128,216,74.18V181.82Z"/>
+          </svg>
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="john@example.com"
+            [class.is-invalid]="submitted && f['email'].errors"
+          />
+        </div>
+        <div *ngIf="submitted && f['email'].errors" class="error-msg">
+          <span *ngIf="f['email'].errors?.['required']">Email is required</span>
+          <span *ngIf="f['email'].errors?.['email']">Enter a valid email</span>
         </div>
       </div>
 
-      <div class="field">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          placeholder="At least 6 characters"
-          autocomplete="new-password"
-          [class.error]="submitted && f['password'].errors"
-        />
-        <div class="field-error" *ngIf="submitted && f['password'].errors">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span *ngIf="f['password'].errors['required']">Password is required</span>
-          <span *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</span>
+      <!-- Password -->
+      <div class="field-group">
+        <label>PASSWORD</label>
+        <div class="input-wrapper" [class.error]="submitted && f['password'].errors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-80-48a24,24,0,1,0-24-24A24,24,0,0,0,128,160Z"/>
+          </svg>
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="••••••"
+            [class.is-invalid]="submitted && f['password'].errors"
+          />
+        </div>
+        <div *ngIf="submitted && f['password'].errors" class="error-msg">
+          <span *ngIf="f['password'].errors?.['required']">Password is required</span>
+          <span *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters</span>
         </div>
       </div>
 
-      <div class="field">
-        <label for="confirmPassword">Confirm password</label>
-        <input
-          id="confirmPassword"
-          type="password"
-          formControlName="confirmPassword"
-          placeholder="Repeat your password"
-          autocomplete="new-password"
-          [class.error]="submitted && f['confirmPassword'].errors"
-        />
-        <div class="field-error" *ngIf="submitted && f['confirmPassword'].errors">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span *ngIf="f['confirmPassword'].errors['required']">Please confirm your password</span>
-          <span *ngIf="f['confirmPassword'].errors['mustMatch']">Passwords do not match</span>
-        </div>
-      </div>
-
-      <button class="btn" [disabled]="submitting">
-        <span *ngIf="submitting" class="spinner"></span>
-        {{ submitting ? 'Creating account…' : 'Create account' }}
+      <!-- Submit -->
+      <button type="submit" class="btn-primary" [disabled]="loading">
+        <span *ngIf="loading" class="spinner"></span>
+        <span *ngIf="!loading">Create Account</span>
+        <span *ngIf="loading">Creating...</span>
       </button>
+
     </form>
 
-    <div class="footer-links" style="justify-content: center;">
-      <a routerLink="/account/login">Already have an account? Sign in</a>
+    <!-- Footer link -->
+    <div class="footer-links">
+      <a routerLink="/account/login">Already have an account?</a>
     </div>
+
   </div>
-</div>  
+</div>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0f1117;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 20px;
+  }
+
+  .auth-card {
+    background: #1a1d27;
+    border-radius: 16px;
+    padding: 40px 36px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .logo-icon {
+    width: 48px;
+    height: 48px;
+    background: #6c63ff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    color: #8b8fa8;
+    font-size: 13px;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  .title {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    line-height: 1.2;
+  }
+
+  .title em {
+    color: #6c63ff;
+    font-style: italic;
+  }
+
+  .field-group {
+    margin-bottom: 16px;
+  }
+
+  label {
+    display: block;
+    color: #8b8fa8;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+  }
+
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    background: #0f1117;
+    border: 1px solid #2a2d3e;
+    border-radius: 10px;
+    padding: 0 14px;
+    gap: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .input-wrapper:focus-within {
+    border-color: #6c63ff;
+  }
+
+  .input-wrapper.error {
+    border-color: #e05252;
+  }
+
+  .input-wrapper svg {
+    color: #8b8fa8;
+    flex-shrink: 0;
+  }
+
+  .input-wrapper input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 13px 0;
+  }
+
+  .input-wrapper input::placeholder {
+    color: #3d4060;
+  }
+
+  .error-msg {
+    color: #e05252;
+    font-size: 12px;
+    margin-top: 5px;
+    padding-left: 2px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    background: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: #5a52d5;
+  }
+
+  .btn-primary:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .footer-links {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .footer-links a {
+    color: #8b8fa8;
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: #6c63ff;
+  }
+</style>

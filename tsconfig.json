@@ -1,8 +1,9 @@
-﻿{
+{
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
     "baseUrl": "src",
+    "ignoreDeprecations": "5.0",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": false,
@@ -19,9 +20,11 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"],
-    "ignoreDeprecations": "6.0",
     "paths": {
-      "@app/*": ["app/*"],
+      "@app/*":          ["app/*"],
+      "@app/_helpers":   ["app/_helpers"],
+      "@app/_models":    ["app/_models"],
+      "@app/_services":  ["app/_services"],
       "@environments/*": ["environments/*"]
     }
   },
